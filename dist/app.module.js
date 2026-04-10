@@ -29,16 +29,22 @@ exports.AppModule = AppModule = __decorate([
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             typeorm_1.TypeOrmModule.forRootAsync({
                 imports: [config_1.ConfigModule],
-                useFactory: (config) => ({
-                    type: 'postgres',
-                    host: config.get('DB_HOST'),
-                    port: +(config.get('DB_PORT') ?? 5432),
-                    username: config.get('DB_USERNAME'),
-                    password: config.get('DB_PASSWORD'),
-                    database: config.get('DB_NAME'),
-                    autoLoadEntities: true,
-                    synchronize: true,
-                }),
+                useFactory: (config) => {
+                    const url = config.get('DATABASE_URL');
+                    if (url) {
+                        return { type: 'postgres', url, autoLoadEntities: true, synchronize: true, ssl: { rejectUnauthorized: false } };
+                    }
+                    return {
+                        type: 'postgres',
+                        host: config.get('DB_HOST'),
+                        port: +(config.get('DB_PORT') ?? 5432),
+                        username: config.get('DB_USERNAME'),
+                        password: config.get('DB_PASSWORD'),
+                        database: config.get('DB_NAME'),
+                        autoLoadEntities: true,
+                        synchronize: true,
+                    };
+                },
                 inject: [config_1.ConfigService],
             }),
             schedule_1.ScheduleModule.forRoot(),
