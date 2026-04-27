@@ -11,6 +11,7 @@ import { TemplatesModule } from './templates/templates.module';
 import { CampaignsModule } from './campaigns/campaigns.module';
 import { ImagesModule } from './images/images.module';
 import { PosterModule } from './poster/poster.module';
+import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 
 @Module({
   imports: [
@@ -47,6 +48,7 @@ import { PosterModule } from './poster/poster.module';
     CampaignsModule,
     ImagesModule,
     PosterModule,
+    SubscriptionsModule,
   ],
 })
 export class AppModule {}

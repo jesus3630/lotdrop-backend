@@ -15,6 +15,7 @@ export declare class FacebookService {
     private uploadImages;
     private fillField;
     private selectDropdown;
+    private xpathOne;
     private selectFirstSuggestion;
     private clickPublish;
     private delay;

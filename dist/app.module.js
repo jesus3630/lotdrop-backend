@@ -20,6 +20,7 @@ const templates_module_1 = require("./templates/templates.module");
 const campaigns_module_1 = require("./campaigns/campaigns.module");
 const images_module_1 = require("./images/images.module");
 const poster_module_1 = require("./poster/poster.module");
+const subscriptions_module_1 = require("./subscriptions/subscriptions.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -59,6 +60,7 @@ exports.AppModule = AppModule = __decorate([
             campaigns_module_1.CampaignsModule,
             images_module_1.ImagesModule,
             poster_module_1.PosterModule,
+            subscriptions_module_1.SubscriptionsModule,
         ],
     })
 ], AppModule);

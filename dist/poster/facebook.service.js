@@ -185,9 +185,9 @@ let FacebookService = FacebookService_1 = class FacebookService {
                 if (el) {
                     await el.click();
                     await this.delay(500);
-                    const option = await page.$x(`//span[contains(text(), "${value}")]`);
-                    if (option.length) {
-                        await option[0].click();
+                    const option = await this.xpathOne(page, `//span[contains(text(), "${value}")]`);
+                    if (option) {
+                        await option.click();
                         return;
                     }
                 }
@@ -196,6 +196,13 @@ let FacebookService = FacebookService_1 = class FacebookService {
         catch (e) {
             this.logger.warn(`Failed to select dropdown "${label}": ${e.message}`);
         }
+    }
+    async xpathOne(page, xpath) {
+        const handle = await page.evaluateHandle((xp) => {
+            const xr = document.evaluate(xp, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+            return xr.singleNodeValue;
+        }, xpath);
+        return handle.asElement();
     }
     async selectFirstSuggestion(page) {
         try {
@@ -210,9 +217,9 @@ let FacebookService = FacebookService_1 = class FacebookService {
         const labels = ['Publish', 'Next', 'Post'];
         for (const label of labels) {
             try {
-                const btns = await page.$x(`//div[@role="button" and .//span[text()="${label}"]]`);
-                if (btns.length) {
-                    await btns[0].click();
+                const btn = await this.xpathOne(page, `//div[@role="button" and .//span[text()="${label}"]]`);
+                if (btn) {
+                    await btn.click();
                     this.logger.log(`Clicked "${label}" button`);
                     return;
                 }
