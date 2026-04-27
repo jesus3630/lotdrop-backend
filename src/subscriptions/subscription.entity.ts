@@ -53,19 +53,19 @@ export class Subscription {
   status: SubscriptionStatus;
 
   /** Stripe customer ID — populated once a paid checkout is initiated */
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   stripeCustomerId: string | null;
 
   /** Stripe subscription ID — populated after a successful checkout */
-  @Column({ nullable: true })
+  @Column({ type: 'varchar', nullable: true })
   stripeSubscriptionId: string | null;
 
   /** Current period end — when the subscription renews or expires */
-  @Column({ nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   currentPeriodEnd: Date | null;
 
   /** When the user cancelled (null = not cancelled) */
-  @Column({ nullable: true })
+  @Column({ type: 'timestamp', nullable: true })
   canceledAt: Date | null;
 
   @CreateDateColumn()
