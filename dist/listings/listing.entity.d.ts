@@ -32,6 +32,12 @@ export declare class Listing {
     scheduledAt: Date;
     postedAt: Date;
     facebookListingId: string;
+    year: number;
+    make: string;
+    model: string;
+    mileage: number;
+    exteriorColor: string;
+    transmission: string;
     createdAt: Date;
     updatedAt: Date;
     user: User;

@@ -64,6 +64,25 @@ export class Listing {
   @Column({ nullable: true })
   facebookListingId: string;
 
+  // Vehicle-specific fields
+  @Column({ nullable: true })
+  year: number;
+
+  @Column({ nullable: true })
+  make: string;
+
+  @Column({ nullable: true })
+  model: string;
+
+  @Column({ nullable: true })
+  mileage: number;
+
+  @Column({ nullable: true })
+  exteriorColor: string;
+
+  @Column({ nullable: true })
+  transmission: string;
+
   @CreateDateColumn()
   createdAt: Date;
 

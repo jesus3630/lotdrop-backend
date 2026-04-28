@@ -52,7 +52,6 @@ let PosterService = PosterService_1 = class PosterService {
                 return { success: false, error: 'Facebook not selected as a platform for this listing.' };
             }
             this.logger.log(`Posting listing "${listing.title}" to Facebook...`);
-            await this.listingsService.update(listingId, userId, { status: listing_entity_1.ListingStatus.SCHEDULED });
             const url = await this.facebookService.postListing({
                 title: listing.title,
                 price: listing.price,
@@ -62,6 +61,12 @@ let PosterService = PosterService_1 = class PosterService {
                 listingType: listing.listingType,
                 images: listing.images || [],
                 facebookCookie: user.facebookCookie,
+                year: listing.year,
+                make: listing.make,
+                model: listing.model,
+                mileage: listing.mileage,
+                exteriorColor: listing.exteriorColor,
+                transmission: listing.transmission,
             });
             await this.listingsService.markPosted(listingId, url);
             this.logger.log(`Successfully posted listing "${listing.title}"`);

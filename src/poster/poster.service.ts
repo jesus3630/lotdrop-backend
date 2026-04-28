@@ -50,8 +50,6 @@ export class PosterService {
 
       this.logger.log(`Posting listing "${listing.title}" to Facebook...`);
 
-      await this.listingsService.update(listingId, userId, { status: ListingStatus.SCHEDULED });
-
       const url = await this.facebookService.postListing({
         title: listing.title,
         price: listing.price,
@@ -61,6 +59,12 @@ export class PosterService {
         listingType: listing.listingType,
         images: listing.images || [],
         facebookCookie: user.facebookCookie,
+        year: listing.year,
+        make: listing.make,
+        model: listing.model,
+        mileage: listing.mileage,
+        exteriorColor: listing.exteriorColor,
+        transmission: listing.transmission,
       });
 
       await this.listingsService.markPosted(listingId, url);

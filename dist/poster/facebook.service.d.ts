@@ -7,16 +7,26 @@ export interface PostListingPayload {
     listingType: string;
     images: string[];
     facebookCookie: string;
+    year?: number;
+    make?: string;
+    model?: string;
+    mileage?: number;
+    exteriorColor?: string;
+    transmission?: string;
 }
 export declare class FacebookService {
     private readonly logger;
     postListing(payload: PostListingPayload): Promise<string>;
+    private fillItemForm;
+    private fillVehicleForm;
     private parseCookies;
     private uploadImages;
     private fillField;
+    private fillOrSelectWithSuggestion;
+    private fillLocationField;
     private selectDropdown;
-    private xpathOne;
+    private findOptionByText;
     private selectFirstSuggestion;
-    private clickPublish;
+    private clickNextOrPublish;
     private delay;
 }
