@@ -12,7 +12,9 @@ async function bootstrap() {
   // Log every request so we can diagnose auth/routing issues
   app.use((req: any, res: any, next: any) => {
     const auth = req.headers.authorization ? 'Bearer ***' : 'none';
-    console.log(`${req.method} ${req.path} | auth: ${auth} | origin: ${req.headers.origin || '-'}`);
+    res.on('finish', () => {
+      console.log(`${req.method} ${req.path} ${res.statusCode} | auth: ${auth} | origin: ${req.headers.origin || '-'}`);
+    });
     next();
   });
 
